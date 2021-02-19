@@ -1,0 +1,49 @@
+#!/bin/bash
+
+[[ "${TERMEX_DEBUG}" != "" ]] && set -x
+
+set -euo pipefail
+
+PYTERMEXTRACT_DIST="${PYTERMEXTRACT_DIST:-/usr/local/pytermextract/pytermex}"
+
+if [[ ! -d "${PYTERMEXTRACT_DIST}" ]]; then
+    exit 1
+fi
+
+suffix="$1"
+shift
+
+if [[ "${suffix%:*}" = "store" ]]; then
+    subcommand="${suffix#*:}"
+    case "${subcommand}" in
+        "tfidf")
+            python "${PYTERMEXTRACT_DIST}/termex_janome_tfidf1.py" "$@"
+            for f in "$@"; do
+                python "${PYTERMEXTRACT_DIST}/termex_janome_tfidf2.py" "$f"
+                find "${PWD}" -type f -name \*.txt -exec cat {} \;
+            done
+            ;;
+        "lr")
+            python "${PYTERMEXTRACT_DIST}/termex_janome-store_lr1.py" "$@"
+            for f in "$@"; do
+                python "${PYTERMEXTRACT_DIST}/termex_janome-store_lr2.py" "$f"
+                find "${PWD}" -type f -name \*.txt -exec cat {} \;
+            done
+            ;;
+        *)
+            exit 1
+            ;;
+    esac
+
+else
+    pytermex_script="${PYTERMEXTRACT_DIST}/termex_${suffix}.py"
+
+    if [[ ! -e "${pytermex_script}" ]]; then
+        exit 1
+    fi
+
+    python "${pytermex_script}" "$@"
+
+fi
+
+find "${PWD}" -type f -name \*.txt -exec cat {} \;
