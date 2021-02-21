@@ -51,7 +51,7 @@ docker run -v /path/to/dir:/txt yujiorama/docker-pytermextract [tfidf|lr] /txt/f
     * 複数の入力ファイルを指定する必要があります
 * `lr`: `LR(単名詞の左右の連接情報)を蓄積し、それをLFの値として用いる例（janomeの和文解析を使用）` を実行します
     * 複数の入力ファイルを指定する必要があります
-* `janomepp | janome_pp | pp`: `パープレキシティによる需要度を用いる例（janomeの和文解析を使用）` を実行します
+* `janomepp | janome_pp | pp`: `パープレキシティによる重要度を用いる例（janomeの和文解析を使用）` を実行します
 * `nlpir`:
 
 ## LICENSE
