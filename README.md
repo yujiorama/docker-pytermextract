@@ -43,7 +43,7 @@ docker run -v /path/to/dir:/txt yujiorama/docker-pytermextract [tfidf|lr] /txt/f
 * `janome | janome-lr | janome_lr`: `janome（日本語形態素解析器）の和文解析結果をもとに、専門用語を抽出する` を実行します
 * `mecab`: `和布蕪（日本語形態素解析器）の和文解析結果をもとに、専門用語を抽出する` を実行します
     * 入力として受け取るのは通常のテキストデータです
-    * Mecat+[NEologd](https://github.com/neologd/mecab-ipadic-neologd)辞書でテキストデータを解析します
+    * Mecab+[NEologd](https://github.com/neologd/mecab-ipadic-neologd)辞書でテキストデータを解析します
 * `eng`: `英文POS Tagger(Pythonのnltkモジュールのword_tokenize)の英文解析結果をもとに、専門用語を抽出する` を実行します
 * `engplain | eng_plain`: `英文を指定のストップワードで分割することで、専門用語を抽出する` を実行します
 * `jpn | jpn-plain | jpn_plain | plain`: `和文を「ひらがな」及び「記号」で分割することで、専門用語を抽出する` を実行します
