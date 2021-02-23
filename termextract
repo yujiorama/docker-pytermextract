@@ -37,7 +37,7 @@ else
         tokens="$(mktemp)"
         cat "$@" | mecab -d "$(mecab-config --dicdir)/mecab-ipadic-neologd" - > "${tokens}"
 
-        set -- "${suffix}" "${tokens}"
+        set -- "${tokens}"
     fi
 
     pytermex_script="${PYTERMEXTRACT_DIST}/termex_${suffix}.py"
